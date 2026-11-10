@@ -65,7 +65,7 @@ export default function Building3D() {
     <Canvas
       shadows
       dpr={[1, 1.75]}
-      camera={{ position: [6, 3.2, 6.5], fov: 34 }}
+      camera={{ position: [8, 4, 8.5], fov: 34 }}
       onCreated={({ gl }) => gl.domElement.parentElement?.setAttribute("data-scene-ready", "true")}
     >
       <ambientLight intensity={0.4} />
