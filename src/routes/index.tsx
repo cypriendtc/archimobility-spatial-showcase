@@ -89,7 +89,7 @@ function Index() {
           <p className="eyebrow">Réalisations récentes</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-bold md:text-6xl">Chaque projet répond à une parcelle, un programme, un budget.</h2>
           <div className="mt-16 grid gap-6 md:grid-cols-6">
-            {[projects[0], projects[3], projects[9], projects[1], projects[4]].map((p, i) => (
+            {[0, 3, 9, 1, 4].map((k) => projects[k]!).map((p, i) => (
               <Link
                 to="/realisations"
                 key={p.title}
