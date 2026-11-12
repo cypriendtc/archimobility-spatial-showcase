@@ -25,8 +25,7 @@ function Index() {
               {t("headlineStart")} <span className="text-primary">{t("headlineAccent")}</span> {t("headlineEnd")}
             </h1>
             <p className="mt-8 max-w-lg text-lg text-muted-foreground">
-              Cabinet d'architecture basé à Yaoundé. Nous concevons hôtels, immeubles et maisons — de l'esquisse au
-              suivi de chantier — avec un double regard architecture et mobilité urbaine.
+              {t("intro")}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/contact" className="glow inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 font-semibold text-primary-foreground transition hover:opacity-90">
@@ -61,7 +60,7 @@ function Index() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="eyebrow">{t("ourServices")}</p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-bold md:text-6xl">Une expertise intégrée, du plan à {t("headlineEnd")}</h2>
+            <h2 className="mt-4 max-w-2xl text-4xl font-bold md:text-6xl">{t("expertise")}</h2>
           </div>
           <Link to="/services" className="text-sm text-primary hover:underline">{t("allServices")} →</Link>
         </div>

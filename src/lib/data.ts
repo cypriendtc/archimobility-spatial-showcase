@@ -75,7 +75,7 @@ const englishServices: typeof services = [
   { n: "05", title: "Urban planning", text: "Urban projects integrating access, parking and the surrounding city, serving local authorities." },
 ];
 
-const englishProjects = [
+const englishProjects: [string, string, string][] = [
   ["FIDO Hotel — Complex", "Cameroon", "A hotel with five storeys above ground, an events hall, conference facilities, panoramic restaurant and swimming pool."],
   ["FIDO Hotel — Five-storey tower", "Cameroon", "A compact hotel on a sloping site, with a rooftop lounge bar."],
   ["FIDO Hotel — Alternative design", "Cameroon", "Façade and operational design study for the hotel tower."],
@@ -101,7 +101,7 @@ export function getProjects(language: "fr" | "en"): Project[] {
 export function getTeam(language: "fr" | "en") {
   if (language === "fr") return team;
   return [
-    { ...team[0], role: "Lead architect · ONAC no. 398", bio: "Master's degrees in sustainable urban mobility and development project management." },
+    { ...team[0], name: "Hermine MBOGNING YOUNDA", role: "Lead architect · ONAC no. 398", bio: "Master's degrees in sustainable urban mobility and development project management." },
     { ...team[1], role: "Consulting architect · ONAC no. 420", bio: "Design, construction drawings and site supervision." },
   ];
 }

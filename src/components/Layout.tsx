@@ -39,7 +39,7 @@ export function Header() {
             Arch<span className="text-primary">Mobility</span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-5 md:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -59,13 +59,13 @@ export function Header() {
             <Languages className="hidden h-4 w-4 text-muted-foreground sm:block" aria-hidden="true" />
             {(["fr", "en"] as const).map((code) => <Button key={code} size="sm" variant={language === code ? "secondary" : "ghost"} aria-label={code === "fr" ? "Français" : "English"} aria-pressed={language === code} onClick={() => setLanguage(code)} className="w-9 px-0">{code.toUpperCase()}</Button>)}
           </div>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)} aria-label={t(open ? "closeMenu" : "menu")} aria-expanded={open}>
+          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setOpen(!open)} aria-label={t(open ? "closeMenu" : "menu")} aria-expanded={open}>
             {open ? <X /> : <Menu />}
           </Button>
         </div>
       </div>
       {open && (
-        <nav className="flex flex-col gap-4 border-t border-border bg-background px-6 py-6 md:hidden">
+        <nav className="flex flex-col gap-4 border-t border-border bg-background px-6 py-6 lg:hidden">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-display text-2xl">
               {t(n.label)}

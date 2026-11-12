@@ -20,8 +20,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const path = pathname.replace(/\/$/, "") || "/";
     if (!(path in pages)) return;
     const [title, description] = pages[path as keyof typeof pages];
+    if (!title || !description) return;
     document.title = title;
-    for (const [selector, value] of [["meta[name='description']", description], ["meta[property='og:title']", title], ["meta[property='og:description']", description]]) {
+    for (const [selector, value] of [["meta[name='description']", description], ["meta[property='og:title']", title], ["meta[property='og:description']", description]] as const) {
       document.querySelectorAll(selector).forEach((meta) => meta.setAttribute("content", value));
     }
   }, [language, pathname]);
