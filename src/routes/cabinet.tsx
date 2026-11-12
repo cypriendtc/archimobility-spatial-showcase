@@ -1,23 +1,20 @@
+import { useLanguage } from "@/lib/i18n";
+import { localizedHead } from "@/lib/translations";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/Layout";
-import { team } from "@/lib/data";
+import { getTeam } from "@/lib/data";
 
 export const Route = createFileRoute("/cabinet")({
-  head: () => ({
-    meta: [
-      { title: "Le cabinet — ArchMobility" },
-      { name: "description", content: "Une équipe d'architectes ONAC à Yaoundé, experts en architecture et mobilité urbaine depuis 2017." },
-      { property: "og:title", content: "Le cabinet — ArchMobility" },
-      { property: "og:description", content: "Architectes ONAC, architecture et mobilité urbaine durable." },
-    ],
-  }),
+  head: () => localizedHead("/cabinet"),
   component: Cabinet,
 });
 
 function Cabinet() {
+  const { language, t } = useLanguage();
+  const team = getTeam(language);
   return (
     <>
-      <PageHero eyebrow="Le cabinet" title="Une équipe d'architectes au service de votre projet." text="Depuis 2017, ArchMobility accompagne particuliers, investisseurs et collectivités en combinant architecture, urbanisme et mobilité urbaine." />
+      <PageHero eyebrow={t("studio")} title={t("studioTitle")} text={t("studioIntro")} />
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-24 md:grid-cols-2">
         {team.map((t) => (
           <div key={t.name} className="rounded-sm border border-border bg-card p-10">
@@ -30,7 +27,7 @@ function Cabinet() {
       </section>
       <section className="bg-paper py-24 text-paper-foreground">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="eyebrow">Notre approche</p>
+          <p className="eyebrow">{t("approach")}</p>
           <p className="mt-6 font-display text-3xl leading-snug md:text-4xl">
             « Notre double regard architecture et mobilité urbaine nous pousse à penser chaque bâtiment avec ses accès, son
             stationnement et son insertion dans la ville. »

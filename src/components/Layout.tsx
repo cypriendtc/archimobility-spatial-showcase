@@ -1,3 +1,6 @@
+import { useLanguage } from "@/lib/i18n";
+import { Button } from "@/components/ui/button";
+import { Languages } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, lazy, Suspense } from "react";
 import { Menu, X } from "lucide-react";
@@ -18,13 +21,14 @@ export function Scene3D() {
 }
 
 const nav = [
-  { to: "/services", label: "Services" },
-  { to: "/realisations", label: "Réalisations" },
-  { to: "/cabinet", label: "Le cabinet" },
-  { to: "/contact", label: "Contact" },
+  { to: "/services", label: "services" },
+  { to: "/realisations", label: "projects" },
+  { to: "/cabinet", label: "studio" },
+  { to: "/contact", label: "contact" },
 ] as const;
 
 export function Header() {
+  const { language, setLanguage, t } = useLanguage();
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
@@ -35,7 +39,7 @@ export function Header() {
             Arch<span className="text-primary">Mobility</span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-5 md:flex">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -43,22 +47,28 @@ export function Header() {
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "text-sm text-primary" }}
             >
-              {n.label}
+              {t(n.label)}
             </Link>
           ))}
           <Link to="/contact" className="rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90">
-            Démarrer un projet
+            {t("start")}
           </Link>
         </nav>
-        <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1" role="group" aria-label={t("language")}>
+            <Languages className="hidden h-4 w-4 text-muted-foreground sm:block" aria-hidden="true" />
+            {(["fr", "en"] as const).map((code) => <Button key={code} size="sm" variant={language === code ? "secondary" : "ghost"} aria-label={code === "fr" ? "Français" : "English"} aria-pressed={language === code} onClick={() => setLanguage(code)} className="w-9 px-0">{code.toUpperCase()}</Button>)}
+          </div>
+          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen(!open)} aria-label={t(open ? "closeMenu" : "menu")} aria-expanded={open}>
+            {open ? <X /> : <Menu />}
+          </Button>
+        </div>
       </div>
       {open && (
         <nav className="flex flex-col gap-4 border-t border-border bg-background px-6 py-6 md:hidden">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-display text-2xl">
-              {n.label}
+              {t(n.label)}
             </Link>
           ))}
         </nav>
@@ -68,6 +78,7 @@ export function Header() {
 }
 
 export function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-3">
@@ -76,27 +87,27 @@ export function Footer() {
             Arch<span className="text-primary">Mobility</span>
           </p>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            Architecture, urbanisme et mobilité urbaine. Cabinet basé à {contact.city}, depuis 2017.
+            {t("footer")}
           </p>
         </div>
         <div className="text-sm text-muted-foreground">
-          <p className="eyebrow mb-3">Contact</p>
+          <p className="eyebrow mb-3">{t("contact")}</p>
           <p>{contact.email}</p>
           {contact.phones.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
         <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-          <p className="eyebrow mb-1">Navigation</p>
+          <p className="eyebrow mb-1">{t("navigation")}</p>
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="hover:text-foreground">
-              {n.label}
+              {t(n.label)}
             </Link>
           ))}
         </div>
       </div>
       <p className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} ArchMobility — Tous droits réservés
+        © {new Date().getFullYear()} ArchMobility — {t("rights")}
       </p>
     </footer>
   );

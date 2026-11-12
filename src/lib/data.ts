@@ -66,3 +66,46 @@ export const team = [
   { initials: "HY", name: "Hermine MBOGNING ép. YOUNDA", role: "Architecte en chef · ONAC n° 398", bio: "Masters en mobilité urbaine durable et en gestion de projets de développement." },
   { initials: "GN", name: "Guy Gerlain YOUNDA NKENNE", role: "Architecte consultant · ONAC n° 420", bio: "Conception, plans d'exécution et suivi des travaux." },
 ];
+
+const englishServices: typeof services = [
+  { n: "01", title: "Architectural design", text: "Concept sketches, preliminary and detailed design, construction drawings, specifications, quantity and cost estimates, and tender documents." },
+  { n: "02", title: "Interior architecture", text: "Space planning and decoration for homes, shops, shared areas and outdoor spaces." },
+  { n: "03", title: "Construction & supervision", text: "Site supervision and support for the client through to project handover." },
+  { n: "04", title: "Mobility & transport", text: "Transport and sustainable urban mobility consultancy for local authorities and operators." },
+  { n: "05", title: "Urban planning", text: "Urban projects integrating access, parking and the surrounding city, serving local authorities." },
+];
+
+const englishProjects = [
+  ["FIDO Hotel — Complex", "Cameroon", "A hotel with five storeys above ground, an events hall, conference facilities, panoramic restaurant and swimming pool."],
+  ["FIDO Hotel — Five-storey tower", "Cameroon", "A compact hotel on a sloping site, with a rooftop lounge bar."],
+  ["FIDO Hotel — Alternative design", "Cameroon", "Façade and operational design study for the hotel tower."],
+  ["JDC Building", "Douala", "A building with three storeys above ground on a 171 m² plot · Detailed design."],
+  ["Four-storey residential building", "Douala", "An investment property with four storeys above ground on a narrow plot."],
+  ["Four-storey apartment building", "Bansoa", "Apartments designed to suit the site and budget."],
+  ["Duplex and studio apartment building", "Simbock, Yaoundé VI", "A duplex home and rental studio apartments."],
+  ["Mixed-use building with shops", "Cameroon", "A mixed-use building with four storeys above ground and a basement · Technical design documentation."],
+  ["Garden-level residential building", "Douala – Nyalla Génie", "A building with a garden level and three storeys above ground on a sloping site."],
+  ["Contemporary duplex villa", "Cameroon", "3D perspectives · Preliminary and detailed design."],
+  ["Residential duplex", "Dschang", "A duplex home with a night-time lighting study."],
+  ["Family villa", "Cameroon", "A two-storey house combining a family home and rental accommodation."],
+];
+
+export function getServices(language: "fr" | "en") { return language === "en" ? englishServices : services; }
+export function getProjects(language: "fr" | "en"): Project[] {
+  return language === "fr" ? projects : projects.map((p, index) => {
+    const translated = englishProjects[index];
+    if (!translated) return p;
+    return { ...p, title: translated[0], place: translated[1], desc: translated[2] };
+  });
+}
+export function getTeam(language: "fr" | "en") {
+  if (language === "fr") return team;
+  return [
+    { ...team[0], role: "Lead architect · ONAC no. 398", bio: "Master's degrees in sustainable urban mobility and development project management." },
+    { ...team[1], role: "Consulting architect · ONAC no. 420", bio: "Design, construction drawings and site supervision." },
+  ];
+}
+export const missionLabels = {
+  fr: ["Esquisse", "APS", "APD", "Plans d'exécution", "Devis quantitatif & estimatif", "DAO", "Suivi des travaux"],
+  en: ["Concept sketches", "Preliminary design", "Detailed design", "Construction drawings", "Quantity & cost estimates", "Tender documents", "Site supervision"],
+};
