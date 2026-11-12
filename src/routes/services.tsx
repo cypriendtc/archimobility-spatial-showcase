@@ -1,25 +1,21 @@
+import { useLanguage } from "@/lib/i18n";
+import { localizedHead } from "@/lib/translations";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/Layout";
-import { services } from "@/lib/data";
+import { getServices, missionLabels } from "@/lib/data";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services — ArchMobility" },
-      { name: "description", content: "Études architecturales, architecture intérieure, suivi de chantier, mobilité et urbanisme." },
-      { property: "og:title", content: "Services — ArchMobility" },
-      { property: "og:description", content: "De l'esquisse au suivi de chantier, avec un regard mobilité urbaine." },
-    ],
-  }),
+  head: () => localizedHead("/services"),
   component: Services,
 });
 
-const missions = ["Esquisse", "APS", "APD", "Plans d'exécution", "Devis quantitatif & estimatif", "DAO", "Suivi des travaux"];
-
 function Services() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+  const missions = missionLabels[language];
   return (
     <>
-      <PageHero eyebrow="Services" title="Penser chaque bâtiment avec ses accès et sa ville." text="Notre double compétence architecture et mobilité urbaine guide chaque mission, du premier croquis à la réception." />
+      <PageHero eyebrow={t("services")} title={t("servicesTitle")} text={t("servicesIntro")} />
       <section className="mx-auto max-w-7xl px-6 py-24">
         {services.map((s) => (
           <div key={s.n} className="grid gap-6 border-b border-border py-12 md:grid-cols-[120px_1fr_1.2fr]">
@@ -31,7 +27,7 @@ function Services() {
       </section>
       <section className="bg-card py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="eyebrow">Nos missions</p>
+          <p className="eyebrow">{t("missions")}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             {missions.map((m, i) => (
               <span key={m} className="rounded-sm border border-border px-5 py-3 font-display text-lg">
@@ -40,7 +36,7 @@ function Services() {
               </span>
             ))}
           </div>
-          <Link to="/contact" className="mt-14 inline-block rounded-sm bg-primary px-6 py-3.5 font-semibold text-primary-foreground">Demander un devis</Link>
+          <Link to="/contact" className="mt-14 inline-block rounded-sm bg-primary px-6 py-3.5 font-semibold text-primary-foreground">{t("quote")}</Link>
         </div>
       </section>
     </>
