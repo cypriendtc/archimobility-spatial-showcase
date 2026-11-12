@@ -29,8 +29,7 @@ function Cabinet() {
         <div className="mx-auto max-w-4xl px-6">
           <p className="eyebrow">{t("approach")}</p>
           <p className="mt-6 font-display text-3xl leading-snug md:text-4xl">
-            « Notre double regard architecture et mobilité urbaine nous pousse à penser chaque bâtiment avec ses accès, son
-            stationnement et son insertion dans la ville. »
+            {t("approachText")}
           </p>
         </div>
       </section>
