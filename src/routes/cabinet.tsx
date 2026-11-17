@@ -15,7 +15,7 @@ function Cabinet() {
   const team = getTeam(language);
   return (
     <>
-      <PageHero image={projects[9].img} eyebrow={t("studio")} title={t("studioTitle")} text={t("studioIntro")} />
+      <PageHero image={projects[9]?.img} eyebrow={t("studio")} title={t("studioTitle")} text={t("studioIntro")} />
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-24 md:grid-cols-2">
         {team.map((m) => (
           <div key={m.name} className="rounded-sm border border-border bg-card p-10">

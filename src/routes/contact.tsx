@@ -19,7 +19,7 @@ function Contact() {
   const field = "w-full rounded-sm border border-input bg-background px-4 py-3 outline-none focus:border-primary";
   return (
     <>
-      <PageHero image={projects[10].img} eyebrow={t("contact")} title={t("contactTitle")} text={t("contactIntro")} />
+      <PageHero image={projects[10]?.img} eyebrow={t("contact")} title={t("contactTitle")} text={t("contactIntro")} />
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-[1fr_1.3fr]">
         <div className="space-y-8">
           <p className="flex items-center gap-4"><Mail className="text-primary" /> {contact.email}</p>

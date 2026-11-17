@@ -16,11 +16,11 @@ function Services() {
   const missions = missionLabels[language];
   return (
     <>
-      <PageHero image={projects[7].img} eyebrow={t("services")} title={t("servicesTitle")} text={t("servicesIntro")} />
+      <PageHero image={projects[7]?.img} eyebrow={t("services")} title={t("servicesTitle")} text={t("servicesIntro")} />
       <section className="mx-auto max-w-7xl px-6 py-24">
         {services.map((s, i) => (
           <div key={s.n} className="grid items-center gap-8 border-b border-border py-12 md:grid-cols-2">
-            <img src={projects[[3, 11, 6, 1, 8][i] ?? 0].img} alt={s.title} loading="lazy" className={`aspect-[16/10] w-full rounded-sm object-cover ${i % 2 ? "md:order-2" : ""}`} />
+            <img src={projects[[3, 11, 6, 1, 8][i] ?? 0]?.img} alt={s.title} loading="lazy" className={`aspect-[16/10] w-full rounded-sm object-cover ${i % 2 ? "md:order-2" : ""}`} />
             <div>
               <p className="font-mono text-primary">{s.n}</p>
               <h2 className="mt-4 text-3xl font-bold md:text-4xl">{s.title}</h2>

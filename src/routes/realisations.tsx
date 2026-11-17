@@ -21,7 +21,7 @@ function Realisations() {
   const list = f === "Tous" ? projects : projects.filter((p) => p.type === f);
   return (
     <>
-      <PageHero image={projects[0].img} eyebrow={t("portfolio")} title={t("projectsTitle")} text={t("projectsIntro")} />
+      <PageHero image={projects[0]?.img} eyebrow={t("portfolio")} title={t("projectsTitle")} text={t("projectsIntro")} />
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="flex flex-wrap gap-2">
           {filters.map((x) => (
