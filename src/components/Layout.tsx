@@ -113,7 +113,7 @@ export function Footer() {
   );
 }
 
-export function PageHero({ eyebrow, title, text, image }: { eyebrow: string; title: string; text: string; image?: string }) {
+export function PageHero({ eyebrow, title, text, image }: { eyebrow: string; title: string; text: string; image?: string | undefined }) {
   return (
     <section className="blueprint relative overflow-hidden border-b border-border pt-40 pb-20">
       {image && (<><img src={image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/40" /></>)}
